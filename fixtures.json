@@ -1,0 +1,15 @@
+{
+  "notice": "Fictional demonstration data. These prices and policies are illustrative and are not Pilon Digital commercial terms.",
+  "client_request": "Example Client A needs a five-page English presentation website, a contact form and one CRM API integration. Target launch: six weeks. Budget and CRM provider have not been specified.",
+  "catalogue": [
+    {"id":"WEB5","name":"Five-page presentation website","unit_price_cents":60000},
+    {"id":"CONTACT","name":"Contact form implementation","unit_price_cents":12000},
+    {"id":"API1","name":"One standard CRM API integration","unit_price_cents":35000}
+  ],
+  "question": "When can a demo deliverable be accepted, and when does support begin?",
+  "documents": [
+    {"id":"POLICY-01","title":"Demonstration acceptance policy","text":"The customer has five business days to review a delivered demonstration milestone. Acceptance requires written confirmation after the agreed checks pass. Silence does not constitute acceptance."},
+    {"id":"POLICY-02","title":"Demonstration support policy","text":"The demonstration support period starts on the date of written acceptance. It covers correction of reproducible defects within the agreed scope for thirty calendar days. New features require a separate agreement."}
+  ],
+  "workflow_request": "Prepare a small implementation plan for the website and CRM integration described in the client request. Include requirements, implementation, testing and delivery. Do not contact anyone or deploy software."
+}

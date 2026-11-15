@@ -1,0 +1,242 @@
+{
+  "project": "Pilon AI Demonstrator",
+  "version": "0.1.0",
+  "generated_at": "2026-11-15T11:42:23.944Z",
+  "notice": "Fictional demonstration data. These prices and policies are illustrative and are not Pilon Digital commercial terms.",
+  "source_sha256": {
+    "agents.mjs": "aafa5814625f3023a82aa762dc850a99e1831f358d8eb1ba427ad259cc3b9eff",
+    "run-demo.mjs": "db57bc5910c30655d57ee0969a2e9d798743b0b89f863bbbbccc97d0784c190a",
+    "fixtures.json": "7eb5b0eeadec19bd9a9c14035365a345394fb0722425f4e33171332cdd439adc"
+  },
+  "runs": [
+    {
+      "module": "quote",
+      "model": "gpt-6-luna",
+      "response_id": "resp_09e674a3493b783f016af99aa1e88087d28e0aa921fa3e6c97",
+      "usage": {
+        "input_tokens": 236,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cache_write_tokens_details": {
+            "ttl_12h_tokens": 0,
+            "ttl_30m_tokens": 0
+          },
+          "cached_tokens": 0
+        },
+        "output_tokens": 125,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 361
+      },
+      "result": {
+        "status": "draft",
+        "currency": "EUR",
+        "summary": "Draft software proposal for Example Client A: deliver a five-page English presentation website, implement a contact form, and integrate one standard CRM API. Target launch is six weeks. Budget and CRM provider are not specified. Human review is required.",
+        "items": [
+          {
+            "id": "WEB5",
+            "name": "Five-page presentation website",
+            "unit_price_cents": 60000,
+            "quantity": 1,
+            "total_cents": 60000
+          },
+          {
+            "id": "CONTACT",
+            "name": "Contact form implementation",
+            "unit_price_cents": 12000,
+            "quantity": 1,
+            "total_cents": 12000
+          },
+          {
+            "id": "API1",
+            "name": "One standard CRM API integration",
+            "unit_price_cents": 35000,
+            "quantity": 1,
+            "total_cents": 35000
+          }
+        ],
+        "total_cents": 107000,
+        "missing_information": [
+          "Budget",
+          "CRM provider and API details",
+          "Confirmation of the six-week target launch date and project schedule",
+          "Content, branding, and other implementation requirements"
+        ]
+      }
+    },
+    {
+      "module": "documents",
+      "model": "gpt-6-luna",
+      "response_id": "resp_022c2ef035c3244e016af99aa4b7c087d2a7873f13408d2a4a",
+      "usage": {
+        "input_tokens": 248,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cache_write_tokens_details": {
+            "ttl_12h_tokens": 0,
+            "ttl_30m_tokens": 0
+          },
+          "cached_tokens": 0
+        },
+        "output_tokens": 161,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 409
+      },
+      "result": {
+        "answer": "A delivered demonstration milestone can be accepted after the agreed checks pass and the customer provides written confirmation. The customer has five business days to review it; silence does not count as acceptance. Support begins on the date of written acceptance and covers reproducible defects within the agreed scope for thirty calendar days.",
+        "insufficient_evidence": false,
+        "citations": [
+          {
+            "document_id": "POLICY-01",
+            "quote": "The customer has five business days to review a delivered demonstration milestone. Acceptance requires written confirmation after the agreed checks pass. Silence does not constitute acceptance."
+          },
+          {
+            "document_id": "POLICY-02",
+            "quote": "The demonstration support period starts on the date of written acceptance. It covers correction of reproducible defects within the agreed scope for thirty calendar days."
+          }
+        ],
+        "review_required": true
+      }
+    },
+    {
+      "module": "workflow",
+      "model": "gpt-6-luna",
+      "response_id": "resp_03df2c6b2bd6036c016af99aa6a61887d298f1754c53d756ed",
+      "usage": {
+        "input_tokens": 214,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cache_write_tokens_details": {
+            "ttl_12h_tokens": 0,
+            "ttl_30m_tokens": 0
+          },
+          "cached_tokens": 0
+        },
+        "output_tokens": 370,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 584
+      },
+      "result": {
+        "title": "Proposed Website and CRM Integration Plan",
+        "tasks": [
+          {
+            "id": "T1",
+            "title": "Confirm scope and project constraints",
+            "description": "Agree on the five-page site structure, content and design requirements, contact-form fields, CRM provider and API access, budget, and six-week target. Record assumptions and identify any items that could affect schedule or cost.",
+            "depends_on": []
+          },
+          {
+            "id": "T2",
+            "title": "Prepare requirements and implementation design",
+            "description": "Define page content and user journeys, form validation and consent requirements, CRM data mapping, integration behavior, security considerations, and acceptance criteria. Confirm a delivery plan based on the agreed scope and access.",
+            "depends_on": [
+              "T1"
+            ]
+          },
+          {
+            "id": "T3",
+            "title": "Build the website and contact form",
+            "description": "Implement the five-page English presentation website and responsive contact form according to the approved design and requirements. Include appropriate validation and clear success and error messages.",
+            "depends_on": [
+              "T2"
+            ]
+          },
+          {
+            "id": "T4",
+            "title": "Implement the CRM API integration",
+            "description": "Connect the contact form to the selected CRM API using approved credentials and field mappings. Handle API errors safely and ensure sensitive credentials are not exposed in the website.",
+            "depends_on": [
+              "T2"
+            ]
+          },
+          {
+            "id": "T5",
+            "title": "Test and resolve issues",
+            "description": "Test all pages, responsive behavior, form validation, CRM data transfer, error handling, and agreed acceptance criteria. Address identified defects and obtain client approval for the delivery candidate.",
+            "depends_on": [
+              "T3",
+              "T4"
+            ]
+          },
+          {
+            "id": "T6",
+            "title": "Prepare delivery and launch handover",
+            "description": "Provide the approved website files or agreed deployment package, configuration and operating notes, and a handover summary. Schedule any launch activity only after client approval and confirmation of hosting and access.",
+            "depends_on": [
+              "T5"
+            ]
+          }
+        ],
+        "status": "proposed",
+        "execution": "not_started"
+      }
+    }
+  ],
+  "automation_simulation": {
+    "notice": "Test fixture approved by the demo harness; local JSON only.",
+    "project": {
+      "title": "Proposed Website and CRM Integration Plan",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "T1",
+          "title": "Confirm scope and project constraints",
+          "description": "Agree on the five-page site structure, content and design requirements, contact-form fields, CRM provider and API access, budget, and six-week target. Record assumptions and identify any items that could affect schedule or cost.",
+          "depends_on": [],
+          "status": "todo"
+        },
+        {
+          "id": "T2",
+          "title": "Prepare requirements and implementation design",
+          "description": "Define page content and user journeys, form validation and consent requirements, CRM data mapping, integration behavior, security considerations, and acceptance criteria. Confirm a delivery plan based on the agreed scope and access.",
+          "depends_on": [
+            "T1"
+          ],
+          "status": "todo"
+        },
+        {
+          "id": "T3",
+          "title": "Build the website and contact form",
+          "description": "Implement the five-page English presentation website and responsive contact form according to the approved design and requirements. Include appropriate validation and clear success and error messages.",
+          "depends_on": [
+            "T2"
+          ],
+          "status": "todo"
+        },
+        {
+          "id": "T4",
+          "title": "Implement the CRM API integration",
+          "description": "Connect the contact form to the selected CRM API using approved credentials and field mappings. Handle API errors safely and ensure sensitive credentials are not exposed in the website.",
+          "depends_on": [
+            "T2"
+          ],
+          "status": "todo"
+        },
+        {
+          "id": "T5",
+          "title": "Test and resolve issues",
+          "description": "Test all pages, responsive behavior, form validation, CRM data transfer, error handling, and agreed acceptance criteria. Address identified defects and obtain client approval for the delivery candidate.",
+          "depends_on": [
+            "T3",
+            "T4"
+          ],
+          "status": "todo"
+        },
+        {
+          "id": "T6",
+          "title": "Prepare delivery and launch handover",
+          "description": "Provide the approved website files or agreed deployment package, configuration and operating notes, and a handover summary. Schedule any launch activity only after client approval and confirmation of hosting and access.",
+          "depends_on": [
+            "T5"
+          ],
+          "status": "todo"
+        }
+      ]
+    }
+  }
+}

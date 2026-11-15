@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {validateQuote,validateAnswer,validatePlan,materializeProject,parseResponse,runModule} from './agents.mjs';
+const catalogue=[{id:'A',name:'Service',unit_price_cents:12345}];
+const quote={summary:'Draft',items:[{service_id:'A',quantity:2}],missing_information:['Deadline']};
+const plan={title:'Demo',tasks:[{id:'1',title:'Scope',description:'Confirm scope',depends_on:[]},{id:'2',title:'Build',description:'Implement',depends_on:['1']},{id:'3',title:'Test',description:'Verify',depends_on:['2']}]};
+test('Money is calculated in integer cents from catalogue',()=>assert.equal(validateQuote(quote,catalogue).total_cents,24690));
+test('Unknown or repeated services rejected',()=>{assert.throws(()=>validateQuote({...quote,items:[{service_id:'B',quantity:1}]},catalogue));assert.throws(()=>validateQuote({...quote,items:[...quote.items,...quote.items]},catalogue));});
+test('Negative and fractional quantities rejected',()=>{for(const q of [-1,0,1.5,101])assert.throws(()=>validateQuote({...quote,items:[{service_id:'A',quantity:q}]},catalogue));});
+test('Fabricated source quotation rejected',()=>assert.throws(()=>validateAnswer({answer:'A',insufficient_evidence:false,citations:[{document_id:'D',quote:'Invented'}]},[{id:'D',text:'Actual text'}])));
+test('Supported quotation accepted',()=>assert.equal(validateAnswer({answer:'A',insufficient_evidence:false,citations:[{document_id:'D',quote:'Actual'}]},[{id:'D',text:'Actual text'}]).review_required,true));
+test('Answer must cite evidence or declare a gap',()=>{assert.throws(()=>validateAnswer({answer:'A',insufficient_evidence:false,citations:[]},[]));assert.equal(validateAnswer({answer:'Unknown',insufficient_evidence:true,citations:[]},[]).insufficient_evidence,true);});
+test('Plan dependency cycle rejected',()=>assert.throws(()=>validatePlan({...plan,tasks:[{...plan.tasks[0],depends_on:['3']},...plan.tasks.slice(1)]})));
+test('Project materialization requires explicit approval',()=>{assert.throws(()=>materializeProject(plan));assert.equal(materializeProject(plan,{approved:true}).tasks[0].status,'todo');});
+test('Incomplete, refused and malformed responses rejected',()=>{assert.throws(()=>parseResponse({status:'incomplete'}));assert.throws(()=>parseResponse({status:'completed',output:[{type:'message',content:[{type:'refusal'}]}]}));assert.throws(()=>parseResponse({status:'completed',output:[{type:'message',content:[{type:'output_text',text:'bad json'}]}]}));});
+test('API failures propagate without leaking response body',async()=>{await assert.rejects(runModule('quote',{}, {apiKey:'sk-test',fetchImpl:async()=>({ok:false,status:429})}),/HTTP 429/);});
